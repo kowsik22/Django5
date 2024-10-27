@@ -36,11 +36,11 @@ If you have specific problems you're facing, please provide more details so I ca
 
 # for login and logout 
 
- <!-- {% block title %}
+   {% block title %}
         {% if request.user.is_authenticated %}
           <h1> you are logged in</h1>
           <a href='{% url 'account_logout'%}'>logout</a>
         {% else %}
            <h1>you are logged out</h1>
            <a href='{% url 'account_login'%}'>login</a>
-        {% endif %} -->
+        {% endif %} 
