@@ -44,3 +44,41 @@ If you have specific problems you're facing, please provide more details so I ca
            <h1>you are logged out</h1>
            <a href='{% url 'account_login'%}'>login</a>
         {% endif %} 
+    {% end title %}
+
+* from django allauth github we have taken the login and logout.html files and then we got integrated them into our base.html main file.
+
+simple if we want to add logout button in our navbar we can do it like this:
+
+    {% if user.is_authenticated %}
+        <a href="{% url 'account_logout'%}">logout</a>
+    
+simple if  we want to add login button in our navbar we can do it like this:
+    
+    {% if not user.is_authenticated %}
+        <a href="{% url 'account_login'%}">login</a>
+
+ here i clearly specified that if the login is successfull then it should show the matter inside the if block. which is having a body block code of homepage.html.
+
+ if it the oage is logged out it should show the content inside else block   
+
+ <h1>This file is in base.html </h1>
+        {% block title %}
+        {% if request.user.is_authenticated %}
+          <h1> you are logged in</h1>
+          {% block body%}
+             
+          {% endblock %}
+          <a href='{% url 'account_logout'%}'>logout</a>
+        {% else %}
+           <h1>you are logged out</h1>
+           <a href='{% url 'account_login'%}'>login</a>
+        {% endif %}
+        {% endblock title %}
+        
+       
+      
+          {% block content%}{% endblock%}
+
+
+here {% block content%}{% endblock%} the actual code is getting executed from login.html..             
