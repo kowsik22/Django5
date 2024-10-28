@@ -1,0 +1,15 @@
+{% extends 'base.html'%}
+
+{% block title%}Create a new post{% endblock title%}
+
+{%block body%}
+    <form method='POST' action='.'>
+        {% csrf_token%}
+        {{form.as_p}}
+
+        <div>
+            <button type='submit' style='border:none solid black;padding:5px 30px; margin-top:1rem; font-weight:bold; color:gray; background-color:white;font-size:1rem;'>Create Post</button>
+        </div>
+    </form>    
+   
+{%endblock body%}
