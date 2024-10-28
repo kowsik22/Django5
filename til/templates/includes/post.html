@@ -17,8 +17,8 @@
           <span>&nbsp;</span>
         {% endif%}      
         <div>
-            {# TODO: User needs a link to their bio and a photo and a thumbnail and a name #}
-            <a class="flex items-center" style='display:flex; flex-direction: column;' href="#">
+            <a class="flex items-center" style='display:flex; flex-direction: column;' href="{% url  'profiles:detail' post.author.username %}">
+
               {% thumbnail post.author.profile.image "373x372" crop="center" as im %}
               <img class="mx-4 w-15 h-20 object-cover rounded-full hidden sm:block" src="{{im.url}}" alt="avatar"><br/>
               {% endthumbnail %}
