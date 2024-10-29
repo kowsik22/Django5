@@ -57,4 +57,32 @@ $(document)
         $btn.prop("disabled", false).text("Error");
       },
     });
+  })
+  .on("click", ".js-follow", function (e) {
+    e.preventDefault();
+    const action = $(this).attr("data-action");
+
+    $.ajax({
+      type: "POST",
+      url: $(this).data("url"),
+      data: {
+        action: action,
+        username: $(this).data("username"),
+      },
+      success: (data) => {
+        $(".js-follow-text").text(data.wording);
+        if (action == "follow") {
+          // Change wording to unfollow
+          console.log("DEBUG", "unfollow");
+          $(this).attr("data-action", "unfollow");
+        } else {
+          // The opposite
+          console.log("DEBUG", "follow");
+          $(this).attr("data-action", "follow");
+        }
+      },
+      error: (error) => {
+        console.warn(error);
+      },
+    });
   });
