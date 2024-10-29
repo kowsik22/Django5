@@ -54,13 +54,19 @@
       {% endif %}
     </ul>
   </div>
-  <div class="p-16 mx-6 mt-6 mb-12  rounded-lg  w-5 d-flex " >
+  {% comment %} <div class="p-16 mx-6 mt-6 mb-12  rounded-lg  w-5 d-flex " >
     {% block body %}
         {% block content %}{% endblock %}
     {% endblock %}
+  </div> {% endcomment %}
+
+  <div class="flex-grow flex items-center justify-center p-6">
+    <div class="w-full max-w-lg  p-10 rounded-lg ">
+      {% block body %}
+        {% block content %}{% endblock %}
+      {% endblock %}
+    </div>
   </div>
-
-
 
 
 

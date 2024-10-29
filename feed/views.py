@@ -51,13 +51,11 @@ class CreateNewPost(LoginRequiredMixin, CreateView):
         obj.save()
         return super().form_valid(form)
     
-    def post(self, request,  *args, **kwargs):
-
+    def post(self, request, *args, **kwargs):
 
         post = Post.objects.create(
             text=request.POST.get('text'),
             author = request.user,
-
         )
 
         return render(

@@ -33,11 +33,13 @@ from django.urls import include, path  # Update: Remove url import
 from django.conf.urls.static import static
 from django.conf import settings
 from feed import urls as feed_urls
+from .views import CustomLoginView
 from profiles import urls as profiles_urls
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("", include(feed_urls, namespace="feed")),
     path("profile/", include(profiles_urls, namespace="profiles")),
+    path("accounts/login/", CustomLoginView.as_view(), name="account_login"),
     path("", include("allauth.urls")),  # Update: Replace url() with path()
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
