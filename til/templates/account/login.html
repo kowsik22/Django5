@@ -7,46 +7,8 @@
 {% endblock head_title %}
 
 {% block content %}
-    {% comment %} <h1 class="text-center text-3xl font-bold my-4">{% trans "Sign In" %}</h1>
-    
-    {% if not SOCIALACCOUNT_ONLY %}
-        <p class="text-center text-gray-600 my-2 ">
-            {% blocktranslate %}If you have not created an account yet, please <a href="{{ signup_url }}">sign up</a> first.{% endblocktranslate %}
-        </p>
 
-        <form method="post" action="{% url 'account_login' %}">
-            {% csrf_token %}
-            {{ form.as_p }}
-            {{ redirect_field }}
-            <div class="flex justify-center mt-4">
-                <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">
-                    {% trans "Sign In" %}
-                </button>
-            </div>
-        </form>
-    {% endif %}
-
-    {% if LOGIN_BY_CODE_ENABLED or PASSKEY_LOGIN_ENABLED %}
-        <hr class="my-4">
-        <div class="flex flex-col items-center space-y-2">
-            {% if PASSKEY_LOGIN_ENABLED %}
-                <button id="passkey_login" class="text-blue-500 underline">
-                    {% trans "Sign in with a passkey" %}
-                </button>
-            {% endif %}
-            {% if LOGIN_BY_CODE_ENABLED %}
-                <a href="{{ request_login_code_url }}" class="text-blue-500 underline">
-                    {% trans "Mail me a sign-in code" %}
-                </a>
-            {% endif %}
-        </div>
-    {% endif %}
-
-    {% if SOCIALACCOUNT_ENABLED %}
-        {% include "socialaccount/snippets/login.html" %}
-    {% endif %} {% endcomment %}
-    
-    <div class="flex justify-center items-center min-h-screen ">
+    <div class="flex justify-center items-center max-h-screen ">
         <div class="bg-white shadow-lg rounded-lg p-8 max-w-md w-full">
             <h1 class="text-3xl font-bold text-center mb-6">{% trans "Sign In" %}</h1>
     
@@ -57,7 +19,7 @@
     
                 <form method="post" action="{% url 'account_login' %}" class="flex flex-col gap-4">
                     {% csrf_token %}
-                    <div class="flex flex-col gap-2">
+                    <div class="flex flex-col gap-3 ">
                         <div class='text-black-400 p-4'>
                             {{ form.as_p }}
                         </div>
@@ -81,6 +43,7 @@
             {% endif %}
         </div>
     </div>
+
 {% endblock content %}
 
 {% block extra_body %}

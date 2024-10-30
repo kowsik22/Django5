@@ -9,22 +9,87 @@
     {% comment %} <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet"> {% endcomment %}
     <link rel="stylesheet" href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css" />
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
-<body>
+<body class="bg-gray-100 min-h-screen">
+  <div class="flex flex-col p-0 m-0 lg:flex-row min-h-screen">
 
+    <div class="flex flex-col lg:w-56 w-full bg-white lg:rounded-r-3xl shadow-lg lg:fixed lg:h-full sidebar">
+      <div class="flex items-center justify-center h-20 shadow-md">
+          <h1 class="text-3xl uppercase text-indigo-500 head">TIL</h1>
+      </div>
+      <ul class="flex lg:flex-col flex-row w-full py-4 lg:py-0 flex-wrap">
+          {% if request.user.is_authenticated %}
+              <li>
+                  <a href="/" class="flex flex-row items-center h-12 px-4 lg:px-0 w-full transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-500 hover:text-gray-800">
+                      <span class="inline-flex items-center justify-center h-12 w-12 text-lg text-gray-400"><i class="bx bx-home"></i></span>
+                      <span class="text-sm font-medium one">Home</span>
+                  </a>
+              </li>
+              <li>
+                  <a href="{% url 'feed:new_post' %}" class="flex flex-row items-center h-12 px-4 lg:px-0 w-full transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-500 hover:text-gray-800 js-toggle-modal">
+                      <span class="inline-flex items-center justify-center h-12 w-12 text-lg text-gray-400"><i class="bx bx-layer-plus"></i></span>
+                      <span class="text-sm font-medium">New Post</span>
+                  </a>
+              </li>
+              <li>
+                  <a href="{% url 'account_logout' %}" class="flex flex-row items-center h-12 px-4 lg:px-0 w-full transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-500 hover:text-gray-800 logout">
+                      <span class="inline-flex items-center justify-center h-12 w-12 text-lg text-gray-400 logout"><i class="bx bx-log-out"></i></span>
+                      <span class="text-sm font-medium logout">Logout</span>
+                  </a>
+              </li>
+          {% else %}
+              <li>
+                  <a href="{% url 'account_login' %}" class="flex flex-row items-center h-12 px-4 lg:px-0 w-full transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-500 hover:text-gray-800">
+                      <span class="inline-flex items-center justify-center h-12 w-12 text-lg text-gray-400"><i class="bx bx-log-in"></i></span>
+                      <span class="text-sm font-medium">Login</span>
+                  </a>
+              </li>
+          {% endif %}
+      </ul>
+    </div>
+  
+    <!-- Main Content Area -->
+    <div class="flex-grow lg:ml-56 flex items-center justify-center p-4 lg:p-6">
+      <div class="w-full ma-w-lg bg- p-6 rounded-lg ">
+        {% block body %}
+          {% block content %}{% endblock %}
+        {% endblock %}
+      </div>
+    </div>
+  
+    <!-- Modal for New Post -->
+    {% if request.user.is_authenticated %}
+    <div class="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-75 hidden js-modal z-50">
+      <div class="bg-white rounded-lg w-full max-w-lg mx-4 p-6 shadow-lg">
+        <div class="flex flex-col items-start">
+          <div class="flex items-center w-full">
+            <h2 class="text-gray-900 font-medium text-lg">New Post</h2>
+            <svg class="ml-auto fill-current text-gray-700 w-6 h-6 cursor-pointer js-toggle-modal" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 18">
+              <path d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"/>
+            </svg>
+          </div>
+          <hr class="my-2 w-full">
+          <textarea class="border-2 border-blue-500 my-4 w-full js-post-text" maxlength='240' rows='3' data-post-url = '{% url 'feed:new_post' %}' placeholder='Enter your post'></textarea>
+          <hr class="my-2 w-full">
+          <div class="ml-auto">
+            <button class="bg-green-500 text-white font-bold rounded py-1 px-3 mt-4 hover:bg-green-600" type="button">
+              Create Post
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endif %} 
+  
+  </div>
 <!-- component is from https://tailwindcomponents.com/component/sidebar-navigation -->
-<div class="min-h-screen flex flex-row bg-gray-100">
+{% comment %} <div class="min-h-screen flex flex-row bg-gray-100">
   <div class="flex flex-col w-56 bg-white rounded-r-3xl overflow-hidden">
     <div class="flex items-center justify-center h-20 shadow-md">
       <h1 class="text-3xl uppercase text-indigo-500">TIL</h1>
     </div>
     <ul class="flex flex-col py-4">
-      {% comment %} <li>
-        <a href="/" class="flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-500 hover:text-gray-800">
-          <span class="inline-flex items-center justify-center h-12 w-12 text-lg text-gray-400"><i class="bx bx-home"></i></span>
-          <span class="text-sm font-medium">Home</span>
-        </a>
-      </li> {% endcomment %}
       {% if request.user.is_authenticated %}
         <li>
           <a href="/" class="flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-500 hover:text-gray-800">
@@ -54,14 +119,9 @@
       {% endif %}
     </ul>
   </div>
-  {% comment %} <div class="p-16 mx-6 mt-6 mb-12  rounded-lg  w-5 d-flex " >
-    {% block body %}
-        {% block content %}{% endblock %}
-    {% endblock %}
-  </div> {% endcomment %}
 
-  <div class="flex-grow flex items-center justify-center p-6">
-    <div class="w-full max-w-lg  p-10 rounded-lg ">
+  <div class="flex-grow flex items-center  p-6">
+    <div class="w-full min-w-lg  p-10 rounded-lg ">
       {% block body %}
         {% block content %}{% endblock %}
       {% endblock %}
@@ -99,7 +159,7 @@
     </div>
   </div>
 {% endif %} 
-</div>
+</div> {% endcomment %}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src='{% static 'js/main.js'%}'></script>
 
