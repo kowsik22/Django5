@@ -33,6 +33,13 @@
                   </a>
               </li>
               <li>
+                <a href="{% url 'profiles:upload_image' request.user.username %}" class="flex flex-row items-center h-12 px-4 lg:px-0 w-full transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-500 hover:text-gray-800 ">
+                    <span class="inline-flex items-center justify-center h-12 w-12 text-lg text-gray-400"><i class="bx bx-layer-plus"></i></span>
+                    <span class="text-sm font-medium">Upload Image</span>
+                </a>
+              </li>
+            
+              <li>
                   <a href="{% url 'account_logout' %}" class="flex flex-row items-center h-12 px-4 lg:px-0 w-full transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-500 hover:text-gray-800 logout">
                       <span class="inline-flex items-center justify-center h-12 w-12 text-lg text-gray-400 logout"><i class="bx bx-log-out"></i></span>
                       <span class="text-sm font-medium logout">Logout</span>

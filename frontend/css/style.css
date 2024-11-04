@@ -1,0 +1,33 @@
+/* Add this to your main CSS file or within a <style> tag in your base.html */
+
+.container {
+  max-width: 600px; /* Set a maximum width */
+  margin: auto; /* Center the container */
+  padding: 20px; /* Add padding */
+}
+
+h2 {
+  font-size: 1.5em; /* Responsive font size */
+  margin-bottom: 20px; /* Space below the heading */
+}
+
+form {
+  display: flex;
+  flex-direction: column; /* Stack elements vertically */
+  align-items: center; /* Center elements horizontally */
+}
+
+button {
+  width: 100%; /* Full width for button */
+  padding: 10px; /* Padding for button */
+}
+
+@media (max-width: 600px) {
+  h2 {
+    font-size: 1.2em; /* Smaller font size for mobile */
+  }
+
+  button {
+    font-size: 0.9em; /* Smaller button text for mobile */
+  }
+}
