@@ -1,10 +1,11 @@
 from typing import Any
-from django.views.generic import    TemplateView,DetailView
+from django.views.generic import TemplateView,DetailView, View, ListView
 from django.views.generic.edit import CreateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
 from followers.models import Follower
 from .models import Post
+from django.shortcuts import get_object_or_404, redirect
 
 
 class HomePage( LoginRequiredMixin, TemplateView):
@@ -67,3 +68,8 @@ class CreateNewPost(LoginRequiredMixin, CreateView):
             },
             content_type='application/html'
         )
+class DeletePostView(View):
+    def post(self, request, post_id):
+        post = get_object_or_404(Post, id=post_id, author=request.user)
+        post.delete()
+        return redirect('feed:index')  

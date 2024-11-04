@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block title %}My Posts{% endblock %}
+
+{% block body %}
+    <h2 class="text-lg font-bold">My Posts</h2>
+    <ul>
+      {% for post in posts %}
+          <li id="post-{{ post.id }}">
+              <div>
+                  <p>{{ post.text }}</p>
+                  <a href="#" class="delete-post" data-post-id="{{ post.id }}">Delete</a>
+              </div>
+          </li>
+      {% endfor %}
+    </ul>
+    <button id="confirm-delete" class="hidden">Confirm Delete</button>
+{% endblock %}

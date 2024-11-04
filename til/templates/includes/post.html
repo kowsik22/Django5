@@ -1,35 +1,10 @@
- {% comment %} {% load thumbnail%}
-
- <!-- component is from https://tailwindcomponents.com/component/post-artical -->
- <div class="max-w-4xl px-10 my-4 py-6 rounded-lg bg-white shadow-md" style='width: 50rem; '>
-    <div class="flex justify-between items-center">
-        <span class="font-light text-gray-600">{{ post.date|date:"F j, Y, g:i:a" }}</span>
-    </div>
-    <div class="mt-2">
-        <p class="mt-2 text-gray-600">{{ post.text }}</p>
-    </div>
-    <div class="flex justify-between items-center mt-4">
-        {% if show_detail_link%}
-           <a class="text-blue-600 hover:underline" href="{%  url 'feed:detail' post.id %}">Read More</a>
-           </a>
-        {% else%}
-          <span>&nbsp;</span>
-        {% endif%}      
-        <div>
-            <a class="flex items-center" style='display:flex; flex-direction: column;' href="{% url  'profiles:detail' post.author.username %}">
-
-              {% thumbnail post.author.profile.image "373x372" crop="center" as im %}
-              <img class="mx-4 w-15 h-20 object-cover rounded-full hidden sm:block" src="{{im.url}}" alt="avatar"><br/>
-              {% endthumbnail %}
-                <h1 class="text-gray-700 font-bold">{{post.author.username}}</h1>
-            </a>
-        </div>
-    </div>
-</div>  {% endcomment %}
-
- {% load thumbnail %}
 
 
+
+
+
+{% load thumbnail %}
+ 
 <div class="max--4xl mx-auto my-4 p-4 sm:p-3 bg-white rounded-lg post shadow-md">
 
     <div class="flex justify-between items-center">
@@ -60,4 +35,5 @@
         </div>
     </div>
 </div> 
+
 

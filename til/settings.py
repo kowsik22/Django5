@@ -46,6 +46,8 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
+    'django_extensions',
     'sorl.thumbnail',
 ]
 
@@ -133,7 +135,7 @@ EMAIL_HOST = 'smtp.gmail.com'  # Gmail SMTP server
 EMAIL_PORT = 587  # Port for TLS
 EMAIL_USE_TLS = True  # Use TLS
 EMAIL_HOST_USER = 'your_email@gmail.com'  # Your email address
-EMAIL_HOST_PASSWORD = 'your_email_password'  # Your email password
+EMAIL_HOST_PASSWORD = 'btsflzigsqescmqc'  # Your email password
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER  # Default from email address
 
 

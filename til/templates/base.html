@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Default title in here{% endblock %}</title>
+    <title>{% block title %}Social Blogging Website{% endblock %}</title>
     {% comment %} <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet"> {% endcomment %}
     <link rel="stylesheet" href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css" />
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
@@ -52,7 +52,8 @@
     <div class="flex-grow lg:ml-56 flex items-center justify-center p-4 lg:p-6">
       <div class="w-full ma-w-lg bg- p-6 rounded-lg ">
         {% block body %}
-          {% block content %}{% endblock %}
+          {% block content %}
+          {% endblock %}
         {% endblock %}
       </div>
     </div>
@@ -72,7 +73,7 @@
           <textarea class="border-2 border-blue-500 my-4 w-full js-post-text" maxlength='240' rows='3' data-post-url = '{% url 'feed:new_post' %}' placeholder='Enter your post'></textarea>
           <hr class="my-2 w-full">
           <div class="ml-auto">
-            <button class="bg-green-500 text-white font-bold rounded py-1 px-3 mt-4 hover:bg-green-600" type="button">
+            <button class=" js-submit bg-green-500 text-white font-bold rounded py-1 px-3 mt-4 hover:bg-green-600" type="button">
               Create Post
             </button>
           </div>
@@ -80,6 +81,7 @@
       </div>
     </div>
     {% endif %} 
+
   
   </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
