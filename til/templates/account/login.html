@@ -10,7 +10,7 @@
 
     <div class="flex justify-center items-center max-h-screen ">
         <div class="bg-white shadow-lg rounded-lg p-8 max-w-md w-full">
-            <h1 class="text-3xl font-bold text-center mb-6">{% trans "Sign In" %}</h1>
+            <h1 class="text-3xl font-bold text-center mb-6 signin">{% trans "Sign In" %}</h1>
     
             {% if not SOCIALACCOUNT_ONLY %}
                 <p class="text-gray-600 text-center mb-4">
@@ -36,9 +36,7 @@
                 
             {% endif %}
     
-            <div class="text-center mt-4">
-                <a href="{% url 'account_reset_password' %}" class="text-blue-500 hover:underline">{% trans "Forgot your password?" %}</a>
-            </div>
+            
     
             {% if SOCIALACCOUNT_ENABLED %}
                 {% include "socialaccount/snippets/login.html" %}
