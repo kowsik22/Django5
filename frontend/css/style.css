@@ -1,33 +1,29 @@
-/* Add this to your main CSS file or within a <style> tag in your base.html */
-
-.container {
-  max-width: 600px; /* Set a maximum width */
-  margin: auto; /* Center the container */
-  padding: 20px; /* Add padding */
+.form-container p {
+  margin-bottom: 1rem;
+  color: #333;
 }
 
-h2 {
-  font-size: 1.5em; /* Responsive font size */
-  margin-bottom: 20px; /* Space below the heading */
+/* Style labels */
+.form-container label {
+  font-weight: bold;
+  font-size: 14px;
+  color: #555;
 }
 
-form {
-  display: flex;
-  flex-direction: column; /* Stack elements vertically */
-  align-items: center; /* Center elements horizontally */
+/* Style input fields */
+.form-container input[type="text"],
+.form-container input[type="password"],
+.form-container input[type="email"] {
+  width: 100%;
+  padding: 0.5rem;
+  margin-top: 0.25rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
 }
 
-button {
-  width: 100%; /* Full width for button */
-  padding: 10px; /* Padding for button */
-}
-
-@media (max-width: 600px) {
-  h2 {
-    font-size: 1.2em; /* Smaller font size for mobile */
-  }
-
-  button {
-    font-size: 0.9em; /* Smaller button text for mobile */
-  }
+/* Style the error messages, if any */
+.form-container .errorlist {
+  color: #e53e3e; /* Red color */
+  font-size: 12px;
+  margin-top: 0.25rem;
 }

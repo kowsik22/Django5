@@ -5,8 +5,8 @@
 {% block title %}{{ user.username }}{% endblock title %}
 
 {% block body %}
-<div  class='w-56'style=' display:flex; width:300px; '>
-<div class="rounded rounded-t-lg overflow-hidden shadow max-w-xs my-3">
+<div  class='w-56 pro'style=' display:flex; width:300px; '>
+<div class="rounded rounded-t-lg overflow-hidden shadow max-w-xs my-3 profile">
   	<img src="https://i.imgur.com/dYcYQ7E.png" class="w-full" />
     <div class="flex justify-center -mt-8">
         {% thumbnail user.profile.image "150x150" crop="center" as im %}
@@ -18,7 +18,7 @@
         {% if request.user.is_authenticated %}
             {% if request.user != user%}
                <div class="ml-auto">
-                    <button class="bg-white text-gray-800 font-bold rounded border-b-2 border-green-500 hover:border-green-600 hover:bg-green-500 hover:text-white shadow-md py-1 px-3 inline-flex items-center text-sm mt-4 js-follow" data-username = "{{user.username}}" data-action='{% if you_follow %}un{%endif%}follow' data-url='{% url 'profiles:follow' user.username %}' type="button">
+                    <button style='width:100px;'class="bg-white text-gray-800 font-bold rounded border-b-2 border-green-500 hover:border-green-600 hover:bg-green-500 hover:text-white shadow-md py-1 px-3 inline-flex items-center text-sm mt-4 js-follow" data-username = "{{user.username}}" data-action='{% if you_follow %}un{%endif%}follow' data-url='{% url 'profiles:follow' user.username %}' type="button">
                      <span class="mr-2 js-follow-text">
                         {% if you_follow%}
                             Unfollow
@@ -38,13 +38,13 @@
         {% endif%}    
 
 	</div>
-  	<div class="flex justify-center pb-3 text-grey-dark">
+  	<div class="flex justify-center pb-3 text-grey-dark ">
       <div class="text-center mr-3 border-r pr-3">
-        <h2>{{total_posts}}{# TODO add total posts #}</h2>
+        <h2>{{total_posts}}</h2>
         <span>Posts</span>
       </div>
       <div class="text-center">
-        <h2>{{total_followers}} {# TODO: Add total followers #}</h2>
+        <h2>{{total_followers}} </h2>
         <span>Followers</span>
       </div>
   	</div>

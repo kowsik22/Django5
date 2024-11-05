@@ -9,12 +9,12 @@
 {% block content %}
     <div class="flex justify-center items-center max-h-screen">
         <div class="bg-white shadow-lg rounded-lg p-8 max-w-md w-full">
-            <h1 class="text-3xl font-bold text-center mb-6">{% trans "Sign Up" %}</h1>
+            <h1 class="text-3xl font-bold text-center mb-6 signup">{% trans "Sign Up" %}</h1>
     
             <form method="post" action="{% url 'account_signup' %}" class="flex flex-col gap-4">
                 {% csrf_token %}
                 <div class="flex flex-col gap-3">
-                    <div class='text-black-400 p-4'>
+                    <div class='text-black-400 signup p-4'>
                         {{ form.as_p }}
                     </div>
                     {{ redirect_field }}
@@ -32,10 +32,13 @@
                     {% blocktranslate %}Already have an account? <a href="{{ login_url }}" class="text-blue-500 hover:underline">Sign in</a>{% endblocktranslate %}
                 </p>
             </div>
-{% comment %} 
-            {% if SOCIALACCOUNT_ENABLED %}
-                {% include "socialaccount/signup.html" %}
-            {% endif %} {% endcomment %}
+ 
         </div>
     </div>
 {% endblock content %}
+
+
+
+  {% comment %} {% if SOCIALACCOUNT_ENABLED %}
+                {% include "socialaccount/signup.html" %}
+            {% endif %}  {% endcomment %}

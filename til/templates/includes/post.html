@@ -14,20 +14,20 @@
     <div class="flex flex-col sm:flex-row justify-between items-center mt-4">
        
         {% if show_detail_link %}
-            <a class="text-blue-600 hover:underline text-sm sm:text-base mb-2 sm:mb-0" href="{% url 'feed:detail' post.id %}">Read More</a>
+            <a class="text-blue-600 hover:underline text-sm sm:text-base mb-2 sm:mb-0 read" href="{% url 'feed:detail' post.id %}">Read More</a>
         {% else %}
             <span>&nbsp;</span>
         {% endif %}
 
-        <div class=" items-center space-x-2" style="display:inline; ">
-            <a class="flex items-center" href="{% url 'profiles:detail' post.author.username %}">
+        <div class=" flex-col items-center space-x-2" style="display:flex; ">
+            <a class="flex flex-col items-center" href="{% url 'profiles:detail' post.author.username %}" >
                 {% thumbnail post.author.profile.image "150x150" crop="center" as im %}
                 <img class="w-10 h-10 sm:w-12 sm:h-12 md:w-16 md:h-16 object-cover rounded-full" src="{{ im.url }}" alt="avatar">
                 {% endthumbnail %}
                 <h1 class="ml-3 text-gray-700 font-bold text-sm sm:text-base">{{ post.author.username }}</h1>
             </a>
             {% if post.author == request.user %}
-              <form action="{% url 'feed:delete_post' post.pk %}" method="post" style="display:inline; ">
+              <form action="{% url 'feed:delete_post' post.pk %}" method="post" style="display:flex; ">
                  {% csrf_token %}
                  <button type="submit" style="background-color:red; color:white; border:none; border-radius:5px; padding:5px 10px; margin-top:10px; cursor:pointer;" onclick="return confirm('Are you sure you want to delete this post?');">Delete</button>
               </form>

@@ -1,99 +1,168 @@
-
 {% load static%}
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Social Blogging Website{% endblock %}</title>
-    {% comment %} <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet"> {% endcomment %}
     <link rel="stylesheet" href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css" />
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <style>
+        .dark-mode {
+            background-color: #000;
+            color: white; 
+        }
+
+        .dark-mode .sidebar {
+            background-color: #1a1a1a; 
+        }
+
+        .dark-mode a {
+            color: blue; 
+        }
+
+        .dark-mode ul li a{
+          color:white;
+        }
+        
+        
+        .dark-mode ul li a:hover{
+          color:white;
+        }
+
+
+        .icon-light, .js-post-text , .signup, .signin{
+            color: black; 
+        }
+
+      
+
+        .icon-dark{
+            color: white; 
+        }
+
+       
+    </style>
 </head>
 <body class="bg-gray-100 min-h-screen">
-  <div class="flex flex-col p-0 m-0 lg:flex-row min-h-screen">
-
-    <div class="flex flex-col lg:w-56 w-full bg-white lg:rounded-r-3xl shadow-lg lg:fixed lg:h-full sidebar">
-      <div class="flex items-center justify-center h-20 shadow-md">
-          <h1 class="text-3xl uppercase text-indigo-500 head">TIL</h1>
-      </div>
-      <ul class="flex lg:flex-col flex-row w-full py-4 lg:py-0 flex-wrap">
-          {% if request.user.is_authenticated %}
-              <li>
-                  <a href="/" class="flex flex-row items-center h-12 px-4 lg:px-0 w-full transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-500 hover:text-gray-800">
-                      <span class="inline-flex items-center justify-center h-12 w-12 text-lg text-gray-400"><i class="bx bx-home"></i></span>
-                      <span class="text-sm font-medium one">Home</span>
-                  </a>
-              </li>
-              <li>
-                  <a href="{% url 'feed:new_post' %}" class="flex flex-row items-center h-12 px-4 lg:px-0 w-full transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-500 hover:text-gray-800 js-toggle-modal">
-                      <span class="inline-flex items-center justify-center h-12 w-12 text-lg text-gray-400"><i class="bx bx-layer-plus"></i></span>
-                      <span class="text-sm font-medium">New Post</span>
-                  </a>
-              </li>
-              <li>
-                <a href="{% url 'profiles:upload_image' request.user.username %}" class="flex flex-row items-center h-12 px-4 lg:px-0 w-full transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-500 hover:text-gray-800 ">
-                    <span class="inline-flex items-center justify-center h-12 w-12 text-lg text-gray-400"><i class="bx bx-layer-plus"></i></span>
-                    <span class="text-sm font-medium">Upload Image</span>
-                </a>
-              </li>
-            
-              <li>
-                  <a href="{% url 'account_logout' %}" class="flex flex-row items-center h-12 px-4 lg:px-0 w-full transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-500 hover:text-gray-800 logout">
-                      <span class="inline-flex items-center justify-center h-12 w-12 text-lg text-gray-400 logout"><i class="bx bx-log-out"></i></span>
-                      <span class="text-sm font-medium logout">Logout</span>
-                  </a>
-              </li>
-          {% else %}
-              <li>
-                  <a href="{% url 'account_login' %}" class="flex flex-row items-center h-12 px-4 lg:px-0 w-full transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-500 hover:text-gray-800">
-                      <span class="inline-flex items-center justify-center h-12 w-12 text-lg text-gray-400"><i class="bx bx-log-in"></i></span>
-                      <span class="text-sm font-medium">Login</span>
-                  </a>
-              </li>
-          {% endif %}
-      </ul>
-    </div>
-  
-    <div class="flex-grow lg:ml-56 flex items-center justify-center p-4 lg:p-6">
-      <div class="w-full ma-w-lg bg- p-6 rounded-lg ">
-        {% block body %}
-          {% block content %}
-          {% endblock %}
-        {% endblock %}
-      </div>
-    </div>
-  
-    
-    {% if request.user.is_authenticated %}
-    <div class="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-75 hidden js-modal z-50">
-      <div class="bg-white rounded-lg w-full max-w-lg mx-4 p-6 shadow-lg">
-        <div class="flex flex-col items-start">
-          <div class="flex items-center w-full">
-            <h2 class="text-gray-900 font-medium text-lg">New Post</h2>
-            <svg class="ml-auto fill-current text-gray-700 w-6 h-6 cursor-pointer js-toggle-modal" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 18">
-              <path d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"/>
-            </svg>
-          </div>
-          <hr class="my-2 w-full">
-          <textarea class="border-2 border-blue-500 my-4 w-full js-post-text" maxlength='240' rows='3' data-post-url = '{% url 'feed:new_post' %}' placeholder='Enter your post'></textarea>
-          <hr class="my-2 w-full">
-          <div class="ml-auto">
-            <button class=" js-submit bg-green-500 text-white font-bold rounded py-1 px-3 mt-4 hover:bg-green-600" type="button">
-              Create Post
-            </button>
+    <div class="flex flex-col p-0 m-0 lg:flex-row min-h-screen">
+      
+        <div class="flex flex-col lg:w-56 w-full bg-white lg:rounded-r-3xl shadow-lg lg:fixed lg:h-full sidebar">
+            <div class="flex items-center justify-center h-20 shadow-md">
+                <h1 class="text-3xl uppercase text-indigo-500 head">TIL</h1>
+            </div>
+            <ul class="flex lg:flex-col flex-row w-full py-4 lg:py-0 flex-wrap">
+                {% if request.user.is_authenticated %}
+                    <li>
+                        <a href="/" class="flex flex-row items-center h-12 px-4 lg:px-0 w-full transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-500 hover:text-gray-800">
+                            <span class="inline-flex items-center justify-center h-12 w-12 text-lg text-gray-400"><i class="bx bx-home"></i></span>
+                            <span class="text-sm font-medium one">Home</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'feed:new_post' %}" class="flex flex-row items-center h-12 px-4 lg:px-0 w-full transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-500 hover:text-gray-800 js-toggle-modal">
+                            <span class="inline-flex items-center justify-center h-12 w-12 text-lg text-gray-400"><i class="bx bx-layer-plus"></i></span>
+                            <span class="text-sm font-medium">New Post</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'profiles:upload_image' request.user.username %}" class="flex flex-row items-center h-12 px-4 lg:px-0 w-full transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-500 hover:text-gray-800 ">
+                            <span class="inline-flex items-center justify-center h-12 w-12 text-lg text-gray-400"><i class="bx bx-image-add"></i></span>
+                            <span class="text-sm font-medium">Upload Image</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'account_logout' %}" class="flex flex-row items-center h-12 px-4 lg:px-0 w-full transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-500 hover:text-gray-800 logout">
+                            <span class="inline-flex items-center justify-center h-12 w-12 text-lg text-gray-400 logout"><i class="bx bx-log-out"></i></span>
+                            <span class="text-sm font-medium logout">Logout</span>
+                        </a>
+                    </li>
+                {% else %}
+                    <li>
+                        <a href="{% url 'account_login' %}" class="flex flex-row items-center h-12 px-4 lg:px-0 w-full transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-500 hover:text-gray-800">
+                            <span class="inline-flex items-center justify-center h-12 w-12 text-lg text-gray-400"><i class="bx bx-log-in"></i></span>
+                            <span class="text-sm font-medium">Login</span>
+                        </a>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+        <div class="flex-grow lg:ml-56 flex items-center justify-center p-4 lg:p-6 relative">
+          <button id="theme-toggle" class="focus:outline-none m-5 btn p-1 bg-red-500" style='width:40px; border-radius:75%; position: absolute; top: 10px; right: 10px;'>
+              <i id="theme-icon" class='bx bx-sun icon-light'></i>
+          </button>
+          <div class="w-full max-w-lg bg- p-6 rounded-lg">
+              {% block body %}
+              {% block content %}
+              {% endblock %}
+              {% endblock %}
           </div>
         </div>
-      </div>
-    </div>
-    {% endif %} 
+      
 
-  
-  </div>
+        {% if request.user.is_authenticated %}
+        <div class="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-75 hidden js-modal z-50">
+            <div class="bg-white rounded-lg w-full max-w-lg mx-4 p-6 shadow-lg">
+                <div class="flex flex-col items-start">
+                    <div class="flex items-center w-full">
+                        <h2 class="text-gray-900 font-medium text-lg">New Post</h2>
+                        <svg class="ml-auto fill-current text-gray-700 w-6 h-6 cursor-pointer js-toggle-modal" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 18">
+                            <path d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"/>
+                        </svg>
+                    </div>
+                    <hr class="my-2 w-full">
+                    <textarea class="border-2 border-blue-500 my-4 w-full p-3 js-post-text" maxlength='240' rows='3' data-post-url = '{% url 'feed:new_post' %}' placeholder='Enter your post'></textarea>
+                    <hr class="my-2 w-full">
+                    <div class="ml-auto">
+                        <button class=" js-submit bg-green-500 text-white font-bold rounded py-1 px-3 mt-4 hover:bg-green-600" type="button">
+                            Create Post
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src='{% static 'js/main.js'%}'></script>
+<script>
+    
+    document.addEventListener('DOMContentLoaded', (event) => {
+        const savedTheme = localStorage.getItem('theme');
+        const icon = document.getElementById('theme-icon');
+        
+        if (savedTheme === 'dark') {
+            document.body.classList.add('dark-mode');
+            icon.classList.remove('bx-sun', 'icon-light');
+            icon.classList.add('bx-moon', 'icon-dark');
+            icon.classList.add('icon-dark');
+        }
+    });
 
+
+    let mode = document.getElementById('theme-toggle');
+    mode.addEventListener("click", toggleMode);
+
+    
+    function toggleMode() {
+        const icon = document.getElementById('theme-icon');
+        document.body.classList.toggle('dark-mode');
+
+        
+        if (document.body.classList.contains('dark-mode')) {
+            localStorage.setItem('theme', 'dark');
+            icon.classList.remove('bx-sun', 'icon-light');
+            icon.classList.add('bx-moon', 'icon-dark');
+            icon.classList.add('icon-dark'); 
+        } else {
+            localStorage.setItem('theme', 'light');
+            icon.classList.remove('bx-moon', 'icon-dark');
+            icon.classList.add('bx-sun', 'icon-light');
+            icon.classList.add('icon-light'); 
+        }
+    }
+</script>
 </body>
 </html>
-

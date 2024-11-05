@@ -130,7 +130,7 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'  # Gmail SMTP server
 EMAIL_PORT = 587  # Port for TLS
 EMAIL_USE_TLS = True  # Use TLS
@@ -154,6 +154,8 @@ ACCOUNT_LOGOUT_REDIRECT = '/'
 ACCOUNT_PRESERVE_USERNAME_CASING = False
 ACCOUNT_SESSION_REMEMBER = True
 ACCOUNT_SIGNUP_PASSWORD_ENTER_TWICE = True
+ACCOUNT_SIGNUP_REDIRECT_URL = '/login/'  # Redirect to login page after signup
+ACCOUNT_LOGIN_REDIRECT_URL = '/'
 ACCOUNT_USERNAME_MIN_LENGTH = 2
 AUTHENTICATION_BACKENDS = (
     "django.contrib.auth.backends.ModelBackend",
