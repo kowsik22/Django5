@@ -32,7 +32,7 @@
         }
 
 
-        .icon-light, .js-post-text , .signup, .signin{
+        .icon-light, .js-post-text , .signup, .signin, .profile, .password{
             color: black; 
         }
 
@@ -41,7 +41,7 @@
         .icon-dark{
             color: white; 
         }
-
+        
        
     </style>
 </head>
@@ -50,7 +50,7 @@
       
         <div class="flex flex-col lg:w-56 w-full bg-white lg:rounded-r-3xl shadow-lg lg:fixed lg:h-full sidebar">
             <div class="flex items-center justify-center h-20 shadow-md">
-                <h1 class="text-3xl uppercase text-indigo-500 head">TIL</h1>
+                <h1 class="text-3xl uppercase text-indigo-500 head">POSTNEST</h1>
             </div>
             <ul class="flex lg:flex-col flex-row w-full py-4 lg:py-0 flex-wrap">
                 {% if request.user.is_authenticated %}
@@ -88,8 +88,8 @@
                 {% endif %}
             </ul>
         </div>
-        <div class="flex-grow lg:ml-56 flex items-center justify-center p-4 lg:p-6 relative">
-          <button id="theme-toggle" class="focus:outline-none m-5 btn p-1 bg-red-500" style='width:40px; border-radius:75%; position: absolute; top: 10px; right: 10px;'>
+        <div class="flex-grow lg:ml-56 flex items-center justify-center p-4 lg:p-6 relative ">
+          <button id="theme-toggle" class="focus:outline-none m-5 btn p-1 bg-gray-400 main" style='width:40px;  border-radius:%; position: absolute; top: 10px; right: 10px;'>
               <i id="theme-icon" class='bx bx-sun icon-light'></i>
           </button>
           <div class="w-full max-w-lg bg- p-6 rounded-lg">
