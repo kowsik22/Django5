@@ -8,7 +8,39 @@
     <link rel="stylesheet" href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css" />
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <style>
+    {% comment %} <style>
+        body {
+            background-image: url("{% static 'images/bg2.jpg' %}");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            position: relative;
+        }
+    
+        /* Overlay for dark mode */
+        .dark-mode::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6); 
+            z-index: -1; 
+        }
+    
+     
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.2);
+            z-index: -1;
+        }
+    
         .dark-mode {
             background-color: #000;
             color: white; 
@@ -42,8 +74,118 @@
             color: white; 
         }
         
-       
+    
+    </style> {% endcomment %}
+
+    <style>
+        body {
+            background-image: url("{% static 'images/bg1.jpg' %}");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            position: relative;
+            
+            min-height: 100vh;
+        }
+    
+        /* Overlay for dark mode */
+        .dark-mode::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6); 
+            z-index: -1; 
+        }
+    
+        /* Light mode overlay */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.2);
+            z-index: -1;
+        }
+    
+        /* Dark mode styles */
+        .dark-mode {
+            background-color: #000;
+            color: white;
+        }
+    
+        .dark-mode .sidebar {
+            background-color: #1a1a1a;
+        }
+    
+        .dark-mode a {
+            color: blue;
+        }
+    
+        .dark-mode ul li a {
+            color: white;
+        }
+    
+        .dark-mode ul li a:hover {
+            color: white;
+        }
+    
+        .icon-light, .js-post-text, .signup, .signin, .profile, .password {
+            color: black;
+        }
+    
+        .icon-dark {
+            color: white;
+        }
+    
+        /* Media queries for responsiveness */
+        
+        /* Large screens (desktop) */
+        @media (min-width: 1024px) {
+            body {
+                background-size: cover;
+                background-attachment: fixed;
+            }
+        }
+    
+        /* Medium screens (tablet) */
+        @media (min-width: 768px) and (max-width: 1023px) {
+            body {
+                background-size: cover;
+                background-position: center;
+            }
+            .sidebar {
+                padding: 10px;
+            }
+        }
+    
+    
+        @media (max-width: 767px) {
+            body {
+                background-size: cover; 
+                background-position: center top;
+            }
+        }
+    
+  
+        @media (max-width: 480px) {
+            body {
+                background-size: cover; 
+                background-position: center top;
+            }
+            .icon-light, .icon-dark {
+                font-size: 1.2em;
+            }
+        }
     </style>
+    
+    
+   
+    
 </head>
 <body class="bg-gray-100 min-h-screen">
     <div class="flex flex-col p-0 m-0 lg:flex-row min-h-screen">
