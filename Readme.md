@@ -1,3 +1,14 @@
+
+# To start the project 
+
+# .venv/scripts/activate
+# python manage.py runserver
+# clt + c to exit
+# deactivate
+
+
+
+
 # To determine if adding the suggested changes to your Django settings.py file will solve your problems, let's break down the key aspects of the changes and their potential impact.
 
 1. Email Configuration
